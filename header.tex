@@ -1,0 +1,57 @@
+\PassOptionsToPackage{table,dvipsnames}{xcolor}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{feynmp-auto}
+\usepackage{standalone}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{wasysym}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[absolute,overlay]{textpos}
+\usetikzlibrary{arrows,shapes}
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+\usetikzlibrary{decorations.pathreplacing}
+
+\graphicspath{ {img/}}
+
+\definecolor{MyBlue}{HTML}{365C7F}
+\definecolor{MyGreen}{HTML}{0F5A43}
+\mode<presentation> {
+  \usetheme{Madrid}
+   \setbeamercovered{transparent=0}
+   \setbeamercolor{author in head/foot}{bg=MyGreen}
+   \setbeamercolor{title in head/foot}{bg=MyGreen}
+   \setbeamercolor{date in head/foot}{bg=MyGreen}
+   \setbeamercolor{structure}{fg=MyBlue}
+  }
+
+\addtobeamertemplate{frametitle}{
+\begin{textblock*}{\paperwidth}(430pt,-.9pt)
+% \includegraphics[width=.74cm]{img/OSU_logo.png}
+\end{textblock*}
+}
+
+\setbeamertemplate{navigation symbols}{}
+
+\defbeamertemplate*{title page}{mydefault}[1][]
+{
+   \vspace*{-.4cm}
+   
+  \begin{center}
+  ~ % Don't remove this! Needed to center the block  
+  \hspace*{-1em}
+    \begin{beamercolorbox}[wd=.8\textwidth, sep=8pt, center, #1, rounded=true, colsep=-5bp]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \vskip.2em
+      \usebeamerfont{subtitle}\insertsubtitle\par
+    \end{beamercolorbox}%   
+    ~ % Don't remove this! Needed to center the block
+  \end{center}  
+}
+\setbeamertemplate{title page}[mydefault]

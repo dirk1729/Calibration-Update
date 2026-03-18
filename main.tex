@@ -1,0 +1,597 @@
+\documentclass[presentation, table, aspectratio=169]{beamer}
+\input{header}
+\input{physics}
+\usepackage{multirow}
+\usepackage{array}
+
+\title{\textbf{Semi-leptonic \ttbar Calibration of ATLAS GN2X Flavor-Tagging Algorithm}}
+\subtitle{Xbb/cc Subgroup -- July 2, 2025}
+\author{Derrick Allen}
+\institute[]{Oklahoma State University}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+\begin{textblock}{60}(5, 80)
+    \small
+    \insertauthor \\
+    \insertinstitute \\
+\end{textblock}
+\tikzstyle{every picture}+=[remember picture]
+
+\usebackgroundtemplate{%
+\parbox[c][9cm][c]{12cm}{\vspace*{0cm} \hspace{.03cm}\includegraphics[angle=0,origin=c,width=15cm]{bg.png}}
+}
+
+{ \setbeamertemplate{footline}{}   % remove footer from title page
+\begin{frame}
+   \parbox{8.5cm}{\vspace*{-3.1cm} \hspace*{0cm}
+   \vspace*{-.3cm}
+ \includegraphics[height=1.1cm]{OSU_logo.png}\\
+}
+\qquad  \parbox{1.1cm}{\vspace*{-3.85cm} \hspace*{2.5cm}
+\vspace*{-.3cm}
+\includegraphics[height=1.3cm]{ATLAS_logo.png}
+}
+\titlepage
+\end{frame}
+}
+\usebackgroundtemplate{ }
+
+\begin{frame}{\ttbar Calibration Strategy}
+    \centering
+    Following the strategy of the previous calibrations detailed in  \href{https://cds.cern.ch/record/2774902/}{\beamergotobutton{R21 Int Note}}. Semi-leptonic \ttbar events are selecting using a tag and probe method; This requires a $t\rightarrow Wb \rightarrow \ell\nu + \text{b-jet}$ as the tag-side and $t\rightarrow Wb \rightarrow q\bar{q} b$ as the probe-side.
+    \includegraphics[width=0.70\textwidth]{img/tagandprobe1.png}
+\end{frame}
+
+\begin{frame}{Objects \& Selections}
+\centering
+All selections are made in \href{https://gitlab.cern.ch/dallen/easyjet/-/tree/calibration?ref_type=heads}{\beamergotobutton{easyjet}}
+\includegraphics[width=0.85\textwidth]{img/obj_defs.png}
+\includegraphics[width=0.85\textwidth]{img/obj_selection.png}
+\end{frame}
+
+\begin{frame}{Process}
+    All selections are made in easyjet with the "xbbcalib-ntupler". The mc samples are then processed further with "XbbCalibPostProcess.py" to add event weights. From there the normfactors and scalefactors can be extracted by performing a maximum likelihood fit TRExFitter.
+    \[
+    \begin{gathered}
+N_{\text {tag }}^{\text {data }}=\mu * S F * N_{\text {tag }}^{\text {ttbar }}+N_{\text {tag }}^{\text {other }} \\
+N_{\text {untag }}^{\text {data }}=\mu * \frac{1-\epsilon^{\mathrm{MC}} * S F}{1-\epsilon^{\mathrm{MC}}} * N_{\text {untag }}^{\text {ttbar }}+N_{\text {untag }}^{\text {other }}
+\end{gathered}
+    \]
+    
+\end{frame}
+
+\begin{frame}{Samples}
+    \includegraphics[width=\textwidth]{img/samples.png}
+\end{frame}
+
+\begin{frame}{Fit Regions}
+    \centering
+    The signal region has events where the large-R jet passes the GN2X WP; Events where the large-R jet does not pass are in the control region.
+    \includegraphics[width=\textwidth]{img/reg_defs.png}
+\end{frame}
+
+\begin{frame}{Control Region (untagged) WP: 0.25}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/CR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+\begin{frame}{Signal Region (tagged) WP: 0.25}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p25/output/Plots/SR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Control Region (untagged) WP: 0.3}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/CR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+\begin{frame}{Signal Region (tagged) WP: 0.3}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p3/output/Plots/SR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Control Region (untagged) WP: 0.37}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/CR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+\begin{frame}{Signal Region (tagged) WP: 0.37}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p37/output/Plots/SR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Control Region (untagged) WP: 0.46}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/CR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+\begin{frame}{Signal Region (tagged) WP: 0.46}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p46/output/Plots/SR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Control Region (untagged) WP: 0.58}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/CR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+\begin{frame}{Signal Region (tagged) WP: 0.58}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p58/output/Plots/SR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Control Region (untagged) WP: 0.74}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/CR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+\begin{frame}{Signal Region (tagged) WP: 0.74}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p74/output/Plots/SR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Control Region (untagged) WP: 0.94}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/CR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+\begin{frame}{Signal Region (tagged) WP: 0.94}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_0p94/output/Plots/SR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Control Region (untagged) WP: 1.25}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/CR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+\begin{frame}{Signal Region (tagged) WP: 1.25}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p25/output/Plots/SR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Control Region (untagged) WP: 1.55}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/CR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+\begin{frame}{Signal Region (tagged) WP: 1.55}
+    \centering
+    \textbf{Prefit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_200_250.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_250_300.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_300_400.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_400_500.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_500_600.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_600_1000.png}
+    \end{minipage}
+    \vspace{1em}
+    \textbf{Postfit}
+    \vspace{0.5em}
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_200_250_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_250_300_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_300_400_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_400_500_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_500_600_postFit.png}
+        \includegraphics[width=0.16\textwidth]{all_years/output_1p55/output/Plots/SR_pT_600_1000_postFit.png}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{Normfactors}
+\centering
+\includegraphics[width=\textwidth]{img/norms1.png}
+\end{frame}
+\begin{frame}{Normfactors}
+\centering
+\includegraphics[width=\textwidth]{img/norms2.png}
+\end{frame}
+\begin{frame}{Normfactors}
+\centering
+\includegraphics[width=\textwidth]{img/norms3.png}
+\end{frame}
+
+\begin{frame}{Campaign Dependence}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/1p55.png}
+    \href{https://cernbox.cern.ch/s/lX70L2LT1xM83Lq}{\beamergotobutton{CERNBOX}}
+\end{frame}
+
+\begin{frame}{Lepton Dependence}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/1p55-2.png}
+\end{frame}
+
+
+\begin{frame}{Conclusion}
+\centering
+\begin{itemize}
+    \item Selection and fitting process works and we now have SF's.
+    \item  There are still some issues with event weighting that need to be resolved.
+\end{itemize}
+ 
+    \includegraphics[width=0.5\textwidth]{img/st_weight.png}
+     All plots separated by year can be found here.
+
+
+    \href{https://cernbox.cern.ch/s/0KAwvC3taDdR0Ao}{\beamergotobutton{2015-2016}}
+    \href{https://cernbox.cern.ch/s/Lp4gjFImQuzEeYV}{\beamergotobutton{2017}}
+    \href{https://cernbox.cern.ch/s/bh6SvZ3xLBwdCeJ}{\beamergotobutton{2018}}
+    \href{https://cernbox.cern.ch/s/XIN7ES4fO4b1D3x}{\beamergotobutton{all years}}
+
+\end{frame}
+
+
+\end{document}
